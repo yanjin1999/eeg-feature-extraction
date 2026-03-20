@@ -1,41 +1,66 @@
-# EEG Resting-State Analysis Pipeline
-
-This repository demonstrates a basic pipeline for resting-state EEG analysis using Python and MNE.
+# EEG Alpha State Classification Project
 
 ## Project Overview
+This project implements a complete EEG signal processing and machine learning pipeline to classify alpha brain states (high vs low alpha activity).
 
-The workflow includes:
+The workflow covers:
+- EEG preprocessing (artifact removal, ICA)
+- Feature extraction (power spectral density, band power, ratios)
+- Machine learning modeling and evaluation
 
-1. EEG data loading and preprocessing  
-2. Artifact inspection and signal cleaning  
-3. Epoch segmentation  
-4. Power spectral density (PSD) analysis  
-5. Feature extraction for machine learning
+---
 
-## Notebooks
+## Motivation
+Alpha activity (8–12 Hz) is closely related to cognitive states such as relaxation and attention.  
+This project aims to build a data-driven pipeline to classify alpha states from EEG signals.
 
-### 01_eeg_preprocessing.ipynb
-EEG preprocessing pipeline including:
-- Raw EEG loading
-- Signal filtering
-- Artifact inspection
-- Epoch segmentation
+---
 
-### 02_eeg_feature_extraction.ipynb
-Feature extraction from EEG epochs including:
-- Power spectral density calculation
-- Frequency band power extraction
-- Log transformation of features
+## Pipeline
 
-## Tools
+### 1. Preprocessing
+- Band-pass filtering
+- ICA-based artifact removal (EOG)
+- Bad segment rejection
 
-- Python
-- MNE-Python
-- NumPy
-- Pandas
-- Matplotlib
+Notebook: `01_preprocessing.ipynb`
 
-## Notes
+---
 
-The dataset used in this project is not included due to size and privacy considerations.  
-The notebooks display the full analysis pipeline and results.
+### 2. Feature Extraction
+- Power Spectral Density (PSD)
+- Band power (delta, theta, alpha, beta)
+- Ratio features (e.g., alpha/theta)
+
+Notebook: `02_feature_extraction.ipynb`
+
+---
+
+### 3. Machine Learning
+- Models:
+  - Logistic Regression
+  - SVM (RBF)
+  - Random Forest
+
+- Validation:
+  - Time-series cross-validation (to prevent data leakage)
+
+- Metrics:
+  - Precision, Recall, F1-score
+
+Notebook: `03_alpha_state_classification.ipynb`
+
+---
+
+## Key Results
+- Achieved stable classification performance after removing data leakage
+- Demonstrated importance of proper validation in time-series EEG data
+
+---
+
+## Skills Demonstrated
+- EEG signal processing (MNE)
+- Feature engineering for physiological signals
+- Time-series aware machine learning
+- Data leakage handling and model validation
+- End-to-end pipeline design
